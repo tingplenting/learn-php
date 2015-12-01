@@ -50,5 +50,28 @@ while ($g = mysql_fetch_object($f)){
 <?php } ?>
 </ul>
 
+<hr/>
+
+<h3>Has Many Query</h3>
+
+<ul>
+<?php 
+$h = mysql_query("SELECT * FROM locations");
+while ($i = mysql_fetch_object($h)) {
+?>
+	<li>
+		<div>#<?=$i->id?> <?=$i->location_name?></div>
+		<ul>
+			<?php 
+			$j = mysql_query("SELECT * FROM users WHERE location_id = '".$i->id."'");
+			while ($k = mysql_fetch_object($j)) { 
+			?>
+			<li>#<?=$k->id?> <?=$k->user_name?></li>
+			<?php } ?>
+		</ul>
+	</li>
+<?php } ?>
+</ul>
+
 </body>
 </html>
